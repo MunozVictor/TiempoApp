@@ -62,6 +62,9 @@ public class DayAdapter extends BaseAdapter {
 
         if(position==0){
             holder.dayLabel.setText("HOY");
+
+        }else if(position==1){
+            holder.dayLabel.setText("MAÑANA");
         }else{
             holder.dayLabel.setText((arrayDay[position].getDayofWeek()).toUpperCase());
         }

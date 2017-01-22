@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:paddingLeft="64dp"
     android:paddingRight="32dp"
-    android:paddingTop="4dp"
-    android:paddingBottom="4dp"
-    android:background="#fecb86"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp"
+    android:background="#fffc970b"
     android:layout_height="match_parent">
 
     <ImageView
