@@ -232,7 +232,6 @@ public class MainActivity extends AppCompatActivity {
             daily[i].setmTime(dailyJSON.getLong("time"));
             daily[i].setmIcon(dailyJSON.getString("icon"));
             daily[i].setmTemperature(dailyJSON.getDouble("temperatureMax"));
-            Log.i(TAG, "Obtenido desde JSON temperatura en celsius: "+ dailyJSON.getDouble("temperatureMax"));
             daily[i].setmSummary(dailyJSON.getString("summary"));
             daily[i].setmTimeZone(timezone);
 
@@ -277,12 +276,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startDailyActivty (View v ){
-        Intent i = new Intent(MainActivity.this, DailyForecastActivity.class);
+        Intent in = new Intent(MainActivity.this, DailyForecastActivity.class);
+        in.putExtra(DAILY_FORECAST,forecast.getmDaylyForecast());
 
-        i.putExtra(DAILY_FORECAST,forecast.getmDaylyForecast());
 
-
-        startActivity(i);
+        startActivity(in);
     }
 
 

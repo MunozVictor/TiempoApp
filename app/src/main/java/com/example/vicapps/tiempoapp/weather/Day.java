@@ -59,8 +59,6 @@ public class Day implements Parcelable{
     public int getTemperatureCelsius(){
         int grados;
         grados = (int)Math.round((mTemperature-32)/1.8);
-
-        Log.i(MainActivity.TAG, "Obtenido desde JSON temperatura en far: "+ grados + " , "+getmTemperature());
         return grados;
 
     }
@@ -146,12 +144,14 @@ public class Day implements Parcelable{
         dest.writeString(mSummary);
         dest.writeString(mIcon);
         dest.writeString(mTimeZone);
+        dest.writeDouble(mTemperature);
     }
     private Day (Parcel in){
         mTime= in.readLong();
         mSummary = in.readString();
         mIcon = in.readString();
         mTimeZone =in.readString();
+        mTemperature=in.readDouble();
 
     }
 }

@@ -57,16 +57,13 @@ public class DayAdapter extends BaseAdapter {
         }else{
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.temperature.setText(arrayDay[position].getTemperatureCelsius()+"");
-        Log.i(MainActivity.TAG, "Obtenido desde ADAPTER temperatura en celsius: "+ arrayDay[position].getTemperatureCelsius());
-
+        holder.temperature.setText(" "+arrayDay[position].getTemperatureCelsius()+"º");
         holder.imageView.setImageResource(arrayDay[position].getIconId());
 
         if(position==0){
             holder.dayLabel.setText("HOY");
         }else{
             holder.dayLabel.setText((arrayDay[position].getDayofWeek()).toUpperCase());
-
         }
 
         return convertView;
