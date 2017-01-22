@@ -168,6 +168,7 @@
         android:id="@+id/btnDias"
         android:layout_alignParentBottom="true"
         android:background="#fecb86"
+        android:onClick="startDailyActivty"
         android:textColor="#ffffff" />
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.example.vicapps.tiempoapp.UI;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -31,7 +32,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = MainActivity.class.getSimpleName();
+    public static final String TAG = MainActivity.class.getSimpleName();
+    public static final String DAILY_FORECAST = "DAILY_FORECAST";
 
     //String forecasturl = "https://api.darksky.net/forecast/4e289f42073b483d96acba37e28e601a/37.8267,-122.4233";
                                                             // key   de la pag darksky          coordenadas
@@ -230,6 +232,7 @@ public class MainActivity extends AppCompatActivity {
             daily[i].setmTime(dailyJSON.getLong("time"));
             daily[i].setmIcon(dailyJSON.getString("icon"));
             daily[i].setmTemperature(dailyJSON.getDouble("temperatureMax"));
+            Log.i(TAG, "Obtenido desde JSON temperatura en celsius: "+ dailyJSON.getDouble("temperatureMax"));
             daily[i].setmSummary(dailyJSON.getString("summary"));
             daily[i].setmTimeZone(timezone);
 
@@ -271,6 +274,15 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onClickRefresh(View v){
         obtenerForcast();
+    }
+
+    public void startDailyActivty (View v ){
+        Intent i = new Intent(MainActivity.this, DailyForecastActivity.class);
+
+        i.putExtra(DAILY_FORECAST,forecast.getmDaylyForecast());
+
+
+        startActivity(i);
     }
 
 
