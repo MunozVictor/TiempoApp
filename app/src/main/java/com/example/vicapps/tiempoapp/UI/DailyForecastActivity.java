@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ public class DailyForecastActivity extends AppCompatActivity{
 
         Intent i = getIntent();
         Parcelable[] parcelables = i.getParcelableArrayExtra(MainActivity.DAILY_FORECAST);
+
         mDay = Arrays.copyOf(parcelables,parcelables.length,Day[].class);
         DayAdapter adapter = new DayAdapter(this , mDay);
         if(mDay.length==0){

@@ -1,9 +1,6 @@
 package com.example.vicapps.tiempoapp.Adapters;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.vicapps.tiempoapp.R;
-import com.example.vicapps.tiempoapp.UI.MainActivity;
 import com.example.vicapps.tiempoapp.weather.Day;
 
 /**
@@ -51,7 +47,7 @@ public class DayAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.imageView = (ImageView) convertView.findViewById(R.id.iconImageView);
             holder.dayLabel= (TextView) convertView.findViewById(R.id.dayNameLabel);
-            holder.temperature= (TextView) convertView.findViewById(R.id.temperatureLabel);
+            holder.temperature= (TextView) convertView.findViewById(R.id.temperatureHourLabel);
             convertView.setTag(holder);
 
         }else{

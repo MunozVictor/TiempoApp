@@ -34,6 +34,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
     public static final String DAILY_FORECAST = "DAILY_FORECAST";
+    public static final String HOURLY_FORECAST = "HOURLY_FORECAST";
 
     //String forecasturl = "https://api.darksky.net/forecast/4e289f42073b483d96acba37e28e601a/37.8267,-122.4233";
                                                             // key   de la pag darksky          coordenadas
@@ -48,16 +49,13 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progresBar;
     Forecast forecast;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         iconImageView = (ImageView) findViewById(R.id.iconImageView);
         timeLabel = (TextView) findViewById(R.id.timeLabel);
-        temperatureLabel = (TextView) findViewById(R.id.temperatureLabel);
+        temperatureLabel = (TextView) findViewById(R.id.temperatureHourLabel);
         precipValue= (TextView) findViewById(R.id.precipValue);
         humidityValue = (TextView) findViewById(R.id.humidityValue);
         summary = (TextView) findViewById(R.id.summaryLabel);
@@ -67,26 +65,20 @@ public class MainActivity extends AppCompatActivity {
         progresBar.setVisibility(View.INVISIBLE);
         obtenerForcast();
     }
-
     private void obtenerForcast() {
         if(isNetworkAvailable()) {
             imageRefresh.setVisibility(View.INVISIBLE);
             progresBar.setVisibility(View.VISIBLE);
-
-
             OkHttpClient client = new OkHttpClient();//se importa la libreria que hemos añadido en el gradle moduleapp
             Request request = new Request.Builder().url(forecastURL).build();
             //se crea la consulta a la que pasamos la url
             Call call = client.newCall(request);
-
         /*¿Qué hacer cuando la red no funciona? Es posible que nos encontremos en un lugar sin acceso
         a la red, por lo que en ese caso es mejor no realizar el intento de petición de datos a la web y
         mostrar un mensaje avisando de la falta de red. Para eso, en nuestro proyecto meteremos
         tod o el código de conexión a la red en un if (desde antes de crear el objeto OkHttpClient) hasta
         después terminar los métodos del Callback.
          */
-
-
             call.enqueue(new Callback() {//enqueue se pone en cola
                 @Override
                 public void onFailure(Request request, IOException e) {
@@ -95,11 +87,8 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             imageRefresh.setVisibility(View.VISIBLE);
                             progresBar.setVisibility(View.INVISIBLE);
-
                         }
                     });
-
-
                 }
 
                 @Override
@@ -118,15 +107,9 @@ public class MainActivity extends AppCompatActivity {
                         //Response response = call.execute();//este proceso debe esperar a que el layout se carga por lo que hay que ponerlo en cola
                         String jsonData=response.body().string();//solo se puede hacer un response
                         Log.v(TAG, jsonData);//devuelve los daros del archivo json con los datos del api que estamos usando
-
                         if (response.isSuccessful()) {
                             forecast = parseForecastDetail(jsonData);
                             cargarDatos();
-
-
-
-
-
                         } else {
                             //SALTARA CUANDO HAYA UN NOT FOUND
                             alertUserAboutError();
@@ -136,21 +119,16 @@ public class MainActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
                 }
             });
         }else{
             Toast.makeText(this,"Error de conexion",Toast.LENGTH_SHORT).show();
         }
     }
-
     private void cargarDatos() {
-
-
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
                 Current current = forecast.getCurrent();
                 Drawable img = getResources().getDrawable(current.getIconId());
                 iconImageView.setImageDrawable(img);
@@ -160,14 +138,8 @@ public class MainActivity extends AppCompatActivity {
                 humidityValue.setText(Math.round((current.getHumidity())*100)+"%");
                 summary.setText(current.getSummary());
                 locationLabel.setText(current.getTimeZone());
-
             }
         });
-
-
-
-
-
     }
 
     private Current getCurrentDetails(String jsonData) throws JSONException {
@@ -211,6 +183,8 @@ public class MainActivity extends AppCompatActivity {
             hourly[i].setmTemperature(hourJSON.getDouble("temperature"));
             hourly[i].setmSummary(hourJSON.getString("summary"));
             hourly[i].setmTimeZone(timezone);
+
+
 
         }
 
@@ -281,6 +255,24 @@ public class MainActivity extends AppCompatActivity {
 
 
         startActivity(in);
+    }
+    public void startHourlyActivity(View v ){
+        Intent i = new Intent (MainActivity.this,HourlyForecastActivity.class);
+        i.putExtra(HOURLY_FORECAST,forecast.getmHourlyForecast());
+
+        for (int in = 0 ; in<forecast.getmHourlyForecast().length;in++){
+            Log.i(TAG, "Enviando desde main: "+ forecast.getmHourlyForecast()[in].getmSummary());
+            Log.i(TAG, "Enviando desde main: "+ forecast.getmHourlyForecast()[in].getTemperatureCelsius());
+            Log.i(TAG, "Enviando desde main: "+ forecast.getmHourlyForecast()[in].getFormattedTime());
+            Log.i(TAG, "Enviando desde main: "+ forecast.getmHourlyForecast()[in].getmIcon());
+            Log.i(TAG, "Enviando desde main: "+ forecast.getmHourlyForecast()[in].getmTimeZone());
+            Log.i(TAG, "Enviando desde main: "+ forecast.getmHourlyForecast()[in].getIconId());
+            Log.i(TAG, "Enviando desde main: "+ forecast.getmHourlyForecast()[in].getmTemperature());
+            Log.i(TAG, "Enviando desde main: "+ forecast.getmHourlyForecast()[in].getmTime());
+
+        }
+        Log.i(TAG, "Enviando desde main longitud: "+ forecast.getmHourlyForecast().length);
+        startActivity(i);
     }
 
 

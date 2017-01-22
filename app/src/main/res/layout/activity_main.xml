@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="23"
-        android:id="@+id/temperatureLabel"
+        android:id="@+id/temperatureHourLabel"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:textColor="@android:color/white"
@@ -26,9 +26,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/degreeImageView"
-        android:layout_alignTop="@+id/temperatureLabel"
-        android:layout_toRightOf="@+id/temperatureLabel"
-        android:layout_toEndOf="@+id/temperatureLabel"
+        android:layout_alignTop="@+id/temperatureHourLabel"
+        android:layout_toRightOf="@+id/temperatureHourLabel"
+        android:layout_toEndOf="@+id/temperatureHourLabel"
         android:src="@drawable/degree"
         android:layout_marginTop="50dp"/>
     <TextView
@@ -62,7 +62,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/temperatureLabel"
+        android:layout_below="@+id/temperatureHourLabel"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:weightSum="100"
@@ -155,7 +155,7 @@
         android:layout_toStartOf="@+id/imageRefresh"
         android:layout_alignParentBottom="true"
         android:background="@drawable/button"
-
+        android:onClick="startHourlyActivity"
         android:textColor="#ffffff" />
 
     <Button

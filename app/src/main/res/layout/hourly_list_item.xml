@@ -10,11 +10,22 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/iconImageViewHour"
+        android:src="@drawable/clear_day"
+        android:paddingLeft="10dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginEnd="37dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/circleImageView"
         android:src="@drawable/clear_day"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,38 +34,22 @@
         android:gravity="center"
         android:textColor="#f25019"
         android:text="100"
+        android:layout_marginBottom="14dp"
         android:layout_alignBottom="@+id/circleImageView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="14dp" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/iconImageView"
-        android:src="@drawable/clear_day"
-        android:paddingLeft="10dp"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/circleImageView"
-        android:layout_toEndOf="@+id/circleImageView"
-        android:layout_marginLeft="14dp"
-        android:layout_marginStart="14dp" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Wednesday"
-        android:id="@+id/dayNameLabel"
+        android:text="00:00"
+        android:id="@+id/hourNameLabel"
         android:paddingLeft="10dp"
         android:textSize="20sp"
         android:textColor="#ffffffff"
+        android:layout_alignBaseline="@+id/temperatureHourLabel"
         android:layout_alignBottom="@+id/temperatureHourLabel"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="22dp"
-        android:layout_marginEnd="22dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
