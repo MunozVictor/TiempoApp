@@ -49,6 +49,7 @@ public class HourAdapter extends BaseAdapter {
             holder.imageView = (ImageView) convertView.findViewById(R.id.iconImageViewHour);
             holder.hourLabel= (TextView) convertView.findViewById(R.id.hourNameLabel);
             holder.temperature = (TextView) convertView.findViewById(R.id.temperatureHourLabel);
+            convertView.setTag(holder);
         }else{
             holder = (ViewHolder) convertView.getTag();
         }
