@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/circleImageView"
-        android:src="@drawable/clear_day"
+        android:src="@drawable/iconoitem"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -23,24 +23,11 @@
         android:gravity="center"
         android:textColor="#f25019"
         android:text="100"
-        android:layout_alignBottom="@+id/circleImageView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="14dp" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/iconImageView"
-        android:src="@drawable/clear_day"
-        android:paddingLeft="10dp"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/circleImageView"
-        android:layout_toEndOf="@+id/circleImageView"
-        android:layout_marginLeft="14dp"
-        android:layout_marginStart="14dp" />
+        android:layout_alignRight="@+id/circleImageView"
+        android:layout_alignEnd="@+id/circleImageView"
+        android:layout_alignBottom="@+id/circleImageView"
+        android:layout_alignParentTop="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -50,11 +37,23 @@
         android:paddingLeft="10dp"
         android:textSize="20sp"
         android:textColor="#ffffffff"
+        android:layout_alignBaseline="@+id/temperatureHourLabel"
         android:layout_alignBottom="@+id/temperatureHourLabel"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="22dp"
-        android:layout_marginEnd="22dp" />
+        android:layout_toRightOf="@+id/iconImageView"
+        android:layout_toEndOf="@+id/iconImageView"
+        android:layout_marginLeft="13dp"
+        android:layout_marginStart="13dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iconImageView"
+        android:src="@drawable/clear_day"
+        android:paddingLeft="10dp"
+        android:layout_toRightOf="@+id/circleImageView"
+        android:layout_toEndOf="@+id/circleImageView"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/circleImageView" />
 
 
 </RelativeLayout>
